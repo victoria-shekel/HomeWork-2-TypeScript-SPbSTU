@@ -7,7 +7,8 @@ import { openModal } from "@services/modal/modalService";
 import { initFooterTitle, initHeaderTitle, initToursDivElements } from "@services/general/general";
 
 export let  toursDataArray: ITours[] = [];
-const imagesStore = images; // ссылка на изображения нужна чтобы webpack формировал изображения в папке dist
+
+const imagesStore = images;
 
 // init data
 const tourData: Promise<ITours[]> = getTours();

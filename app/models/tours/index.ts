@@ -1,4 +1,4 @@
-// определить интерфейс ITours - дополнительно добавить к описанию свойство  img: string
+//интерфейс ITours
 
 export interface ITours {
     name: string,

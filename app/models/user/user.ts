@@ -1,4 +1,4 @@
-// определить интерфейс IUser
+//интерфейс IUser
 
 export interface IUser {
     name: string,
