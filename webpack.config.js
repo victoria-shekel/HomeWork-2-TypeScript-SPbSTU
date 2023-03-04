@@ -1,5 +1,7 @@
 const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
 
     devServer: {
@@ -77,6 +79,8 @@ module.exports = {
         path: __dirname + '/dist',
         clean: true,
     },
+
+    mode: 'production',
 
     optimization: {
         splitChunks: {

@@ -1,10 +1,10 @@
-import {getTicketById, postTicketData} from "@rest/tickets";
-import '@myCss'; // добавлена новая ссылка - ссылка ведет на один файл
+import { getTicketById, postTicketData } from "@rest/tickets";
+import '@myCss'; //main.scss
 import '@assets/styles/tickets.scss'
-import {initTicketElementTemplate} from "../../templates/ticketInfo";
-import {IVipTicket, TicketType, ITicket} from "../../models/ticket/ticket";
-import {initFooterTitle, initHeaderTitle} from "@services/general/general";
-import {initTicketInfo, registerConfirmButton} from "@services/tickets/ticket";
+import { initTicketElementTemplate } from "../../templates/ticketInfo";
+import { IVipTicket, TicketType, ITicket } from "../../models/ticket/ticket";
+import { initFooterTitle, initHeaderTitle } from "@services/general/general";
+import { initTicketInfo, registerConfirmButton } from "@services/tickets/ticket";
 
 
 let ticketInstance: TicketType ;
@@ -15,9 +15,8 @@ const clientType = "custom";
 
 // init main  data
 initApp();
+
 registerConfirmButton();
-
-
 
 function initApp(): void {
     const ticketData: Promise<IVipTicket[]> = getTicketById<IVipTicket>('someId');

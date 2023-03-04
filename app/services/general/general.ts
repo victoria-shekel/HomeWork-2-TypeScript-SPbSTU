@@ -1,16 +1,17 @@
 
-/* Общие методы используются для вставки текста в header   footer*/
+/* Общие методы используются для вставки текста в header footer*/
 
 /*  -
     - Указать в методах возвращающие типы, типы для параметров, в теле функции также указать типы
 */
 import { getTourTemplate } from "../../templates/tours";
 import { openModal } from "@services/modal/modalService";
+import { ITours } from "../../models/tours";
 
-export function initHeaderTitle(ticketName, selector) {
+export function initHeaderTitle(ticketName: string, selector: string): void {
     const headerElement= document.querySelector('header');
 
-    const targetItem = headerElement.querySelector(selector);
+    const targetItem = <HTMLElement>headerElement.querySelector(selector);
 
     if (targetItem) {
         targetItem.innerText = ticketName;
@@ -20,14 +21,14 @@ export function initHeaderTitle(ticketName, selector) {
 export function initFooterTitle(ticketName, selector) {
     const headerElement = document.querySelector('footer');
 
-    const targetItem = headerElement.querySelector(selector);
+    const targetItem = <HTMLElement>headerElement.querySelector(selector);
 
     if (targetItem) {
         targetItem.innerText = ticketName;
     }
 }
 
-export function initToursDivElements(data) {
+export function initToursDivElements(data: ITours[]): void {
 
     if (Array.isArray(data)) {
         const rootElement = document.querySelector('.main-app');
@@ -50,11 +51,12 @@ export function initToursDivElements(data) {
     }
 }
 
-export function initTourElemListener(tourWrap) {
+//пробежаться по всему коду (типы)
+export function initTourElemListener(tourWrap: HTMLElement): void {
     tourWrap.addEventListener('click', (ev) => {
-        const targetItem = ev.target;
+        const targetItem = <HTMLElement>ev.target;
 
-        const parentItem = targetItem?.parentNode;
+        const parentItem = <HTMLElement>targetItem?.parentNode;
 
         let realTarget;
 
@@ -66,6 +68,7 @@ export function initTourElemListener(tourWrap) {
 
         if (realTarget) {
             const dataIndex = realTarget.getAttribute('data-tour-item-index');
+
             openModal('order', Number(dataIndex));
         }
     });
