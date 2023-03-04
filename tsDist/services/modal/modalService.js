@@ -1,19 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+
 exports.ModalService = void 0;
+
 const ModalService = /** @class */ (function () {
     function ModalService() {
         this.modals = [];
     }
+
     ModalService.prototype.add = function (modal) {
         // add modal to array of active modals
         this.modals.push(modal);
         modal.element.classList.add('opacity-0');
     };
+
     ModalService.prototype.remove = function () {
         const modal = document.getElementById(this.id);
         modal.parentNode.removeChild(modal);
     };
+
     ModalService.prototype.open = function (template) {
         if (template === void 0) { template = null; }
         const divWrap = document.createElement('div');
@@ -23,7 +28,9 @@ const ModalService = /** @class */ (function () {
         divWrap.classList.add('modal-element');
         document.body.appendChild(divWrap);
     };
+
     return ModalService;
 }());
+
 exports.ModalService = ModalService;
 //# sourceMappingURL=modalService.js.map

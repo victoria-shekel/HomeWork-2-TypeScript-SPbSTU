@@ -1,25 +1,26 @@
-import {getTours} from "@rest/tours";
+import { getTours } from "@rest/tours";
 import './assets/styles/main.scss';
-import {images} from "@services/img/img";
-import {ITours} from "./models/tours/index";
-import {getTourTemplate} from "./templates/tours";
-import {openModal} from "@services/modal/modalService";
-import {initFooterTitle, initHeaderTitle} from "@services/general/general";
+import { images } from "@services/img/img";
+import { ITours } from "./models/tours/index";
+import { getTourTemplate } from "./templates/tours";
+import { openModal } from "@services/modal/modalService";
+import { initFooterTitle, initHeaderTitle } from "@services/general/general";
 
-export let  toursDataArray: ITours[] = [];
+export let toursDataArray: ITours[] = [];
+
 const imagesStore = images; // ссылка на изображения нужна чтобы webpack формировал изображения в папке dist
 
-
-
 initHeaderTitle('Туры', 'h1');
+
 initFooterTitle('Туры по всему миру', 'h2');
+
 // init data
 const tourData: Promise<ITours[]> = getTours();
 
 tourData.then((data): void => {
-  console.log('call')
-  toursDataArray = data;
-  initToursDivElements(data);
+    console.log('call')
+    toursDataArray = data;
+    initToursDivElements(data);
 });
 
 
@@ -33,42 +34,42 @@ tourData.then((data): void => {
 
 
 function initTourElemListener(tourWrap) {
-  tourWrap.addEventListener('click', (ev) => {
-    const targetItem = ev.target;
-    const parentItem = targetItem?.parentNode;
-    let realTarget;
+    tourWrap.addEventListener('click', (ev) => {
+        const targetItem = ev.target;
+        const parentItem = targetItem?.parentNode;
+        let realTarget;
 
-    if (targetItem.hasAttribute('data-tour-item-index')) {
-      realTarget = targetItem;
-    } else if (parentItem && parentItem.hasAttribute('data-tour-item-index')) {
-      realTarget = parentItem;
-    }
+        if (targetItem.hasAttribute('data-tour-item-index')) {
+            realTarget = targetItem;
+        } else if (parentItem && parentItem.hasAttribute('data-tour-item-index')) {
+            realTarget = parentItem;
+        }
 
-    if (realTarget) {
-      const dataIndex = realTarget.getAttribute('data-tour-item-index');
-      openModal('order', Number(dataIndex));
-    }
-  });
+        if (realTarget) {
+            const dataIndex = realTarget.getAttribute('data-tour-item-index');
+            openModal('order', Number(dataIndex));
+        }
+    });
 }
 
 function initToursDivElements(data) {
 
-  if (Array.isArray(data)) {
-    const rootElement: Element = document.querySelector('.main-app');
-    const tourWrap: Element = document.createElement('div');
+    if (Array.isArray(data)) {
+        const rootElement: Element = document.querySelector('.main-app');
+        const tourWrap: Element = document.createElement('div');
 
-    tourWrap.classList.add('tour-wrap');
+        tourWrap.classList.add('tour-wrap');
 
-    // init click for modal
-    initTourElemListener(tourWrap);
+        // init click for modal
+        initTourElemListener(tourWrap);
 
-    let rootElementData = '';
-    data.forEach((el, i) => {
-      rootElementData += getTourTemplate(el, i);
-    });
+        let rootElementData = '';
+        data.forEach((el, i) => {
+            rootElementData += getTourTemplate(el, i);
+        });
 
-    tourWrap.innerHTML = rootElementData;
-    rootElement.appendChild(tourWrap) ;
-  }
+        tourWrap.innerHTML = rootElementData;
+        rootElement.appendChild(tourWrap);
+    }
 }
 
