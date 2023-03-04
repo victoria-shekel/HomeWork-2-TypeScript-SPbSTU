@@ -1,9 +1,11 @@
 // Определить интерфейс ITicket
 
-import {IUser} from "../user/user";
+// Определить интерфейс IVipTicket который расширяет  ITicket
+
+// Определить тип TicketType который будет объединять 2 интерфейса IVipTicket и ITicket
 
 export interface ITicket {
-    id ?: string,
+    // id?: string,
     description: string,
     name: string,
     price: string,
@@ -13,20 +15,12 @@ export interface ITicket {
         y: '70.45'
     },
     hotel: string
+    vipStatus?: string
 }
-
-// Определить интерфейс IVipTicket который расширяет  ITicket
 
 export interface IVipTicket extends ITicket {
     vipNumber: number,
     vipStatus: string
 }
 
-// Определить тип TicketType который будет объединять 2 интерфейса IVipTicket и ITicket
-
-export type TicketType = IVipTicket | ITicket;
-
-export interface IPostTicketData {
-    ticket: TicketType,
-    user: IUser,
-}
+export type TicketType = ITicket | IVipTicket;

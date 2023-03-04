@@ -5,4 +5,3 @@ export interface IUser {
     cardNumber: string,
     birthDate: Date
 }
-
