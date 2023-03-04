@@ -4,12 +4,14 @@
 /*  -
     - Указать в методах возвращающие типы, типы для параметров, в теле функции также указать типы
 */
-import {getTourTemplate} from "../../templates/tours";
-import {openModal} from "@services/modal/modalService";
+import { getTourTemplate } from "../../templates/tours";
+import { openModal } from "@services/modal/modalService";
 
 export function initHeaderTitle(ticketName, selector) {
     const headerElement= document.querySelector('header');
+
     const targetItem = headerElement.querySelector(selector);
+
     if (targetItem) {
         targetItem.innerText = ticketName;
     }
@@ -17,7 +19,9 @@ export function initHeaderTitle(ticketName, selector) {
 
 export function initFooterTitle(ticketName, selector) {
     const headerElement = document.querySelector('footer');
+
     const targetItem = headerElement.querySelector(selector);
+
     if (targetItem) {
         targetItem.innerText = ticketName;
     }
@@ -27,6 +31,7 @@ export function initToursDivElements(data) {
 
     if (Array.isArray(data)) {
         const rootElement = document.querySelector('.main-app');
+
         const tourWrap = document.createElement('div');
 
         tourWrap.classList.add('tour-wrap');
@@ -40,15 +45,17 @@ export function initToursDivElements(data) {
         });
 
         tourWrap.innerHTML = rootElementData;
+
         rootElement.appendChild(tourWrap) ;
     }
 }
 
-
 export function initTourElemListener(tourWrap) {
     tourWrap.addEventListener('click', (ev) => {
         const targetItem = ev.target;
+
         const parentItem = targetItem?.parentNode;
+
         let realTarget;
 
         if (targetItem.hasAttribute('data-tour-item-index')) {
